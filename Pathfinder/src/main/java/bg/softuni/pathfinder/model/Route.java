@@ -2,6 +2,9 @@ package bg.softuni.pathfinder.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table (name = "routes")
 public class Route {
@@ -26,8 +29,12 @@ public class Route {
     private String videoUrl;
     @ManyToOne(optional = false)
     private User author;
+    @OneToMany(targetEntity = Comment.class, mappedBy = "route")
+    private Set<Comment> comments;
 
-    public Route () {}
+    public Route () {
+        this.comments = new HashSet<> ();
+    }
 
     public long getId() {
         return id;
