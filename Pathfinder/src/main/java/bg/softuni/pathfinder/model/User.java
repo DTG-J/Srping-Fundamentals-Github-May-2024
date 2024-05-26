@@ -19,11 +19,12 @@ public class User {
     private String password;
     @Column(name = "full_name", nullable = false)
     private String fullName;
+    @Column(unique = true)
     private String email;
     @ManyToMany
     private Set<Role> roles;
     @Enumerated (EnumType.STRING)
-    private UserLevel level;
+    private Level level;
     public User () {
         this.roles = new HashSet<> ();
     }
