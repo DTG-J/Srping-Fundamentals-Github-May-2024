@@ -11,9 +11,8 @@ private long id;
     @Enumerated(EnumType.STRING)
     private UserRoles name;
 
-    public Role(long id, UserRoles name) {
-        this.id = id;
-        this.name = name;
+     public Role() {
+
     }
 
     public long getId() {

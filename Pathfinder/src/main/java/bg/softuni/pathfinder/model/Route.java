@@ -8,12 +8,6 @@ import java.util.Set;
 @Entity
 @Table (name = "routes")
 public class Route {
-    //•	id - Accepts UUID String or Long values
-    //•	gpx coordinates - Accepts very long text values
-    //•	level - Accepts the levels of the routes (BEGINNER, INTERMEDIATE, ADVANCED) as values
-    //•	name - Accepts String values
-    //•	author - Accepts User Entities as values
-    //•	video url – Accepts the ids of youtube videos as values
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
@@ -31,9 +25,31 @@ public class Route {
     private User author;
     @OneToMany(targetEntity = Comment.class, mappedBy = "route")
     private Set<Comment> comments;
+    @OneToMany(targetEntity = Picture.class, mappedBy = "route")
+    private Set <Picture> pictures;
+    @ManyToMany
+    private Set<Category>categories;
 
     public Route () {
         this.comments = new HashSet<> ();
+        this.pictures = new HashSet<> ();
+        this.categories = new HashSet<> ();
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
     }
 
     public long getId() {
