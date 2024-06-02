@@ -23,7 +23,7 @@ public class RouteService {
         this.modelMapper = new ModelMapper ();
         this.random = new Random ();
     }
-
+    @Transactional
     public List<RouteShortInfoDTO> getALL(){
         return routeRepository.findAll ()
                 .stream ()
