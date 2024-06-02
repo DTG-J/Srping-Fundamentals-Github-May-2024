@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -22,6 +23,13 @@ public class RouteService {
         this.modelMapper = new ModelMapper ();
         this.random = new Random ();
     }
+
+    public List<RouteShortInfoDTO> getALL(){
+        return routeRepository.findAll ()
+                .stream ()
+                .map (this::mapToShortInfo)
+                .toList ();
+    }
     @Transactional
     public RouteShortInfoDTO getRandomRoute (){
         long routeCount = routeRepository.count ();
@@ -33,10 +41,15 @@ public class RouteService {
            // throw exception; return empty
         }
 
-        RouteShortInfoDTO dto = modelMapper.map (route.get (), RouteShortInfoDTO.class);
-        Optional<Picture> first = route.get ().getPictures ().stream ().findFirst ();
-        dto.setImageUrl (first.get ().getUrl ());
 
+        return mapToShortInfo (route.get ());
+    }
+
+
+    private RouteShortInfoDTO mapToShortInfo(Route route) {
+        RouteShortInfoDTO dto = modelMapper.map (route, RouteShortInfoDTO.class);
+        Optional<Picture> first = route.getPictures ().stream ().findFirst ();
+        dto.setImageUrl (first.get ().getUrl ());
         return dto;
     }
 }
