@@ -11,12 +11,13 @@ public class RouteController {
     private RouteService routeService;
 
     public RouteController(RouteService routeService) {
+
         this.routeService = routeService;
     }
 
     @GetMapping("/routes")
     public String routes (Model model) {
-        RouteShortInfoDTO randomRoute = routeService.getRandomRoute ();
+        RouteShortInfoDTO randomRoute = routeService.getRandomRoute();
 
         model.addAttribute ("route", randomRoute);
         return "routes";

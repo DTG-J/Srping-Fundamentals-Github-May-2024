@@ -25,7 +25,7 @@ public class RouteService {
     @Transactional
     public RouteShortInfoDTO getRandomRoute (){
         long routeCount = routeRepository.count ();
-        long randomId = random.nextLong (routeCount) + 1;
+        long randomId = random.nextLong (routeCount)+1;
 
         Optional<Route> route = routeRepository.findById (randomId);
 
