@@ -1,11 +1,23 @@
 package bg.softuni.pathfinder.web.dto;
 
+
+import jakarta.validation.constraints.*;
+
 public class UserRegisterDTO {
+    @NotEmpty
+    @NotNull
     private String username;
+@NotEmpty
+@Size(min = 5)
     private String fullName;
+@Email
     private String email;
+@Min (0)
+@Max(90)
     private String age;
+@Size(min = 5)
     private String password;
+@
     private String confirmPassword;
 
     public UserRegisterDTO(){}
