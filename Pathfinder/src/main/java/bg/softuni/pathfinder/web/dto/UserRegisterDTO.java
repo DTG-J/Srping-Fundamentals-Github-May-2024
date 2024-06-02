@@ -17,7 +17,6 @@ public class UserRegisterDTO {
     private String age;
 @Size(min = 5)
     private String password;
-@
     private String confirmPassword;
 
     public UserRegisterDTO(){}
