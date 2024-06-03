@@ -21,8 +21,10 @@ public class UserController {
             return "register";
         }
         //register user
+        return "redirect:/users/login";
+    }
+    @GetMapping("users/login")
+    public String viewLogin(){
         return "login";
     }
-
-
 }
